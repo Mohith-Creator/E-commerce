@@ -1,0 +1,58 @@
+.buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  border: none;
+  max-width: 400px; /* Set a max width */
+  margin: 20px auto; /* Center the container */
+}
+
+.buttons button {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: black; /* Default text color */
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.5s ease, transform 0.2s, color 0.5s ease; /* Add transition for text color */
+  transform: translateY(-15px);
+  position: relative;
+  overflow: hidden;
+}
+
+.buttons button i {
+  font-size: 16px; /* Ensure icon size is consistent */
+  font-style: normal;   /* Remove italic if any */
+  display: inline-block; /* Ensure the icon is inline with the text */
+  transform: none;      /* Reset any transform applied */
+}
+
+
+.buttons button::before {
+  content: "";
+  position: absolute;
+  bottom: -100%; /* Start from below the button */
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  transition: bottom 0.5s ease; /* Slide in from the bottom */
+  z-index: -1; /* Make sure the pseudo-element stays behind the text */
+}
+
+.buttons button:hover::before {
+  bottom: 0; /* Move up to cover the button */
+}
+
+.buttons button:hover {
+  color: white; /* Change text color to white on hover */
+  transform: scale(1.05) translateY(-15px); /* Keep the upward movement when hovering */
+}
+
+.buttons button:active {
+  background-color: black;
+  color: white;
+  transform: scale(0.95) translateY(-15px); /* Keep the upward movement when active */
+}

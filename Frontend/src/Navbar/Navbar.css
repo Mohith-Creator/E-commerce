@@ -1,0 +1,448 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.navbar {
+  border-bottom: 1px solid #222;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  color: black;
+  padding: 1rem 2rem;
+  z-index: 10;
+  transition: background-color 0.3s ease;
+}
+
+/* Logo */
+.nav-left .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 0.3rem;
+  color: black;
+  cursor: pointer;
+  font-family: "Audiowide", sans-serif;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+
+/* Nav links */
+.nav-middle .nav-links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-middle .nav-links li {
+  font-size: 1rem;
+}
+
+.nav-middle .nav-links li a {
+  text-decoration: none;
+  color: black;
+  font-weight: 500;
+  position: relative; /* Add this to position the line */
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.nav-left .logo:hover {
+  transform: scale(1.05); /* Slightly enlarge the logo on hover */
+}
+
+/* Position and style the dropdown */
+.user-profile {
+  position: relative;
+  cursor: pointer;
+}
+
+/* General styling for profile, wishlist, and cart */
+.user-profile,
+.wishlist,
+.cart {
+  display: flex;
+  flex-direction: column; /* Stack icon and text vertically */
+  align-items: center; /* Center-align icon and text */
+  cursor: pointer;
+  padding: 0.5rem 0.8rem; /* Add padding for clickability */
+  border-radius: 6px; /* Rounded corners */
+  transition: transform 0.3s ease, color 0.3s ease; /* Smooth hover effects */
+}
+
+.user-profile:hover,
+.wishlist:hover,
+.cart:hover {
+  transform: scale(1.05); /* Slight enlargement on hover */
+}
+
+/* Icon styling */
+.user-profile i,
+.wishlist i,
+.cart i {
+  font-size: 1.5rem; /* Larger icons for visibility */
+  color: black; /* Default icon color */
+  margin-bottom: 0.3rem; /* Space between icon and text */
+  transition: transform 0.3s ease;
+}
+
+.user-profile:hover i,
+.wishlist:hover i,
+.cart:hover i {
+  transform: scale(1.1); /* Slightly enlarge icon on hover */
+}
+
+/* Text styling */
+.user-profile p,
+.wishlist p,
+.cart p {
+  margin: 0;
+  font-size: 0.9rem; /* Adjust font size for clarity */
+  color: black; /* Default text color */
+  font-weight: 500; /* Medium weight for emphasis */
+  text-align: center; /* Center text alignment */
+}
+
+.nav-middle .nav-links li a::after {
+  content: "";
+  position: absolute;
+  left: 50%; /* Start from the middle */
+  bottom: -3px; /* Position the line slightly below the text */
+  width: 0;
+  height: 2px;
+  background-color: black; /* Highlight color */
+  transform: translateX(-50%); /* Center the starting point */
+  transition: width 0.3s ease;
+}
+
+.nav-middle .nav-links li a:hover {
+  font-weight: 550;
+  transform: scale(1.1); /* Slightly enlarge link on hover */
+}
+
+.nav-middle .nav-links li a:hover::after {
+  width: 100%; /* Expand the line to full width */
+}
+
+/* Nav right */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  background-color: #f1f1f1; /* Neutral background */
+  padding: 0.4rem 0.8rem; /* Add more padding for better usability */
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.search-bar:hover {
+  background-color: #e9e9e9;
+}
+
+.search-bar .fa-magnifying-glass {
+  color: black; /* Neutral icon color */
+  margin-right: 0.6rem;
+  font-size: 1.2rem; /* Slightly larger icon */
+  transition: none;
+}
+
+.search-bar:hover .fa-magnifying-glass {
+  color: black;
+  font-size: 1.2rem;
+}
+
+.search-bar .search {
+  border: none;
+  background: none;
+  outline: none;
+  color: #333; /* Neutral text color */
+  font-size: 1rem;
+  width: 220px; /* Slightly wider by default */
+  transition: width 0.3s ease; /* Smooth resizing */
+}
+
+.search-bar .search::placeholder {
+  color: #888; /* Subtle placeholder color */
+  font-style: italic; /* Optional styling for placeholders */
+}
+
+.search-bar .search:focus {
+  width: 260px; /* Expand width when focused */
+  transition: width 0.3s ease; /* Smooth transition for width */
+}
+
+/* Icons in nav-right */
+.nav-right i {
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: black;
+  transition: color 0.3s ease;
+}
+
+.nav-right i:hover {
+  color: black;
+  font-size: 1.3rem;
+}
+
+/* Profile dropdown */
+.user-profile {
+  position: relative;
+  cursor: pointer;
+}
+
+.user-profile:hover .dropdown-menu,
+.dropdown-menu:hover {
+  display: block; /* Keep dropdown visible when hovering over both profile and dropdown */
+}
+
+.dropdown-menu {
+  display: none; /* Initially hidden */
+  position: absolute;
+  top: 100%; /* Position directly below the profile icon */
+  left: 50%; /* Center the dropdown horizontally */
+  transform: translateX(-50%); /* Offset by half its width to center it */
+  width: 250px;
+  background-color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 10px 0;
+  border-radius: 6px;
+  z-index: 5; /* Ensure dropdown is below navbar */
+}
+
+.dropdown-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.dropdown-menu ul li {
+  padding: 0.8rem 1rem;
+  cursor: pointer;
+}
+
+.dropdown-menu ul li:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown-menu ul li a {
+  text-decoration: none;
+  color: black;
+  font-weight: 500;
+  display: block;
+}
+
+.user-profile:hover .dropdown-menu {
+  display: block; /* Show dropdown on hover */
+}
+
+/* Centering icon and text in .user-profile */
+.user-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .nav-middle {
+    display: none; /* Hide middle section on smaller screens */
+  }
+
+  .nav-right .search-bar {
+    display: none; /* Hide search bar on smaller screens */
+  }
+
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-left {
+    width: 100%;
+    text-align: center;
+  }
+
+  .nav-right {
+    width: 100%;
+    justify-content: space-around;
+  }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .user-profile,
+  .wishlist,
+  .cart {
+    padding: 0.4rem; /* Adjust padding for smaller screens */
+  }
+
+  .user-profile i,
+  .wishlist i,
+  .cart i {
+    font-size: 1.3rem; /* Slightly smaller icons for mobile */
+  }
+
+  .user-profile p,
+  .wishlist p,
+  .cart p {
+    font-size: 0.8rem; /* Adjust font size for smaller screens */
+  }
+}
+
+/* Add class for background change on scroll */
+.navbar.scrolled {
+  background-color: white !important;
+}
+
+/* Change nav link color when scrolling */
+.navbar.scrolled .nav-left .logo {
+  color: black;
+}
+
+.navbar.scrolled .nav-middle .nav-links li a {
+  color: black; /* Change link color when scrolling */
+}
+
+.navbar.scrolled .nav-right i {
+  color: black;
+}
+
+.navbar.scrolled .nav-middle .nav-links li a::after {
+  content: "";
+  position: absolute;
+  left: 50%; /* Start from the middle */
+  bottom: -3px; /* Position the line slightly below the text */
+  width: 0;
+  height: 2px;
+  background-color: black; /* Highlight color */
+  transform: translateX(-50%); /* Center the starting point */
+  transition: width 0.3s ease;
+}
+
+.navbar.scrolled .nav-middle .nav-links li a:hover {
+  font-weight: 550;
+  transform: scale(1.1); /* Slightly enlarge link on hover */
+}
+
+.navbar.scrolled .nav-middle .nav-links li a:hover::after {
+  width: 100%; /* Expand the line to full width */
+}
+
+.navbar.scrolled .nav-right i:hover {
+  color: black; /* Highlight on hover */
+  font-size: 1.3rem;
+}
+
+.navbar.scrolled .search-bar:hover .fa-magnifying-glass {
+  color: black;
+  font-size: 1.2rem;
+}
+
+.navbar.scrolled .user-profile,
+.navbar.scrolled .wishlist,
+.navbar.scrolled .cart {
+  color: black;
+}
+
+.navbar.scrolled .user-profile i,
+.navbar.scrolled .wishlist i,
+.navbar.scrolled .cart i {
+  color: black;
+}
+
+.navbar.scrolled .user-profile p,
+.navbar.scrolled .wishlist p,
+.navbar.scrolled .cart p {
+  color: black;
+}
+
+.user-profile {
+  position: relative;
+  cursor: pointer;
+  padding: 0 10px;
+}
+
+.user-profile:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 250px;
+  background-color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 10px 0;
+  border-radius: 6px;
+  z-index: 999;
+}
+
+.dropdown-header {
+  padding: 10px 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.username {
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 4px;
+}
+
+.user-phone {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.dropdown-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown-links li {
+  padding: 10px 20px;
+  font-size: 0.95rem;
+  color: #333;
+  transition: background 0.2s;
+}
+
+.dropdown-links li:hover {
+  background-color: #f2f2f2;
+}
+
+.dropdown-links a {
+  color: inherit;
+  text-decoration: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+hr {
+  margin: 8px 0;
+  border: none;
+  border-top: 1px solid #eee;
+}
+
+.new-badge {
+  background-color: #ff3366;
+  color: white;
+  font-size: 0.65rem;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 3px;
+  text-transform: uppercase;
+}

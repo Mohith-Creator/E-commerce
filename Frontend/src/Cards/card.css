@@ -1,0 +1,159 @@
+.card {
+  width: 255px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
+  background-color: white;
+  position: relative;
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+  margin: 0;
+  padding: 0;
+  border-bottom: none;
+}
+
+.card-body {
+  padding: 10px 20px;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #333;
+  margin: 5px 0;
+}
+
+.card-text {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 5px;
+  text-align: left;
+  width: 100%;
+}
+
+.cardprice {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  margin-top: 5px;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.originalprice {
+  font-size: 1.05rem;
+  color: #999;
+  text-decoration: line-through;
+  font-weight: 400;
+}
+
+.discountedprice {
+  font-size: 1.25rem;
+  color: #222;
+  font-weight: 550;
+}
+
+.card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.card-body p {
+  margin: 5px 0;
+}
+
+.offer-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #333;
+  color: white;
+  padding: 5px 10px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.cardbuttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.cardbuttons button {
+  flex: 1;
+  padding: 8px 10px;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.addtocart {
+  background-color: #333;
+  color: #fff;
+}
+
+.addtocart:hover {
+  background-color: #fff;
+  border-color: #333;
+  color: #333;
+}
+
+.wishlists {
+  position: relative;
+  overflow: hidden;
+  background-color: white;
+  border: 1.5px solid #333;
+  color: #333;
+  font-weight: 500;
+  border-radius: 5px;
+  transition: color 0.3s ease;
+  z-index: 1;
+}
+
+/* Add the sliding black background */
+.wishlists::before {
+  content: "";
+  position: absolute;
+  bottom: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  z-index: -1;
+  transition: bottom 0.3s ease;
+  border-radius: 5px;
+}
+
+.wishlists:hover::before {
+  bottom: 0;
+}
+
+.wishlists:hover {
+  color: white;
+}
+
+.product-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.5s ease-in-out;
+}

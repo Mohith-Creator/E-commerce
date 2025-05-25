@@ -1,0 +1,75 @@
+.seasonal-toggle-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  background: #fff; /* White background */
+  border-radius: 30px;
+  padding: 8px;
+  width: fit-content;
+  margin: 20px auto; /* Center on the page */
+  border: 2px solid lightgray; /* Light gray border */
+}
+
+.seasonal-toggle-button {
+  flex: 1;
+  background: transparent;
+  border: none;
+  border-radius: 25px;
+  padding: 12px 25px;
+  font-size: 0.9rem; /* Smaller font size */
+  font-weight: 500;
+  color: #333; /* Dark gray text */
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap; /* Prevent text from wrapping */
+  text-align: center; /* Ensure text is centered */
+}
+
+.seasonal-toggle-button.active {
+  background: #333; /* Black background */
+  color: #fff; /* White text */
+}
+
+.seasonal-toggle-button:focus {
+  outline: none;
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(
+    5,
+    minmax(0, 1fr)
+  ); /* 5 cards in a row with equal width */
+  gap: 16px; /* Space between cards */
+  padding: 20px; /* Padding around the grid */
+  justify-content: space-between; /* Ensures spacing between cards without scrolling */
+  overflow-x: hidden; /* Prevents horizontal scrolling */
+}
+
+@media (max-width: 1024px) {
+  .card-container {
+    grid-template-columns: repeat(
+      3,
+      minmax(0, 1fr)
+    ); /* 3 cards in a row for medium screens */
+  }
+}
+
+@media (max-width: 600px) {
+  .card-container {
+    grid-template-columns: repeat(
+      2,
+      minmax(0, 1fr)
+    ); /* 2 cards in a row for small screens */
+  }
+
+  .seasonal-toggle-group {
+    padding: 6px;
+  }
+
+  .seasonal-toggle-button {
+    padding: 10px 20px;
+    font-size: 0.8rem; /* Even smaller font size on small screens */
+  }
+}

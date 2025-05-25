@@ -1,0 +1,157 @@
+/* styles.css */
+.login-container {
+  background-color: #fff; /* White background for the card */
+  padding: 20px 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  margin: 50px auto; /* Center the form within its container */
+}
+
+h3 {
+  font-size: 1.2rem; /* Decreased font size */
+  color: #333; /* Dark gray color */
+  margin-bottom: 25px; /* Spacing below the heading */
+  text-align: center; /* Center-align the heading */
+  font-weight: 200; /* Slightly bold text */
+  text-transform: uppercase; /* Make text uppercase */
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Adds spacing between form elements */
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd; /* Single border for the entire container */
+  border-radius: 4px;
+  overflow: hidden; /* Ensures children don't spill out of the rounded border */
+}
+
+label {
+  padding: 10px;
+  font-size: 14px;
+  color: #666; /* Lighter gray for labels */
+  background-color: #f8f8f8; /* Slightly darker background for the label */
+  border-right: 1px solid #ddd; /* Separator between the label and input */
+}
+
+.input-text {
+  flex: 1; /* Ensures the input takes up available space */
+  border: none; /* Removes the default border of the input */
+  padding: 10px;
+  font-size: 16px;
+  width: 100vw;
+  outline: none;
+}
+
+.input-text:focus {
+  background-color: #fdfdfd; /* Slightly lighter background on focus */
+}
+
+.login-btn {
+  background-color: #000; /* Black button */
+  color: #fff; /* White text */
+  border: none;
+  border-radius: 4px;
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.login-btn:hover {
+  background-color: #333; /* Darker gray on hover */
+}
+
+.login-btn:active {
+  background-color: #555; /* Slightly lighter gray on click */
+}
+
+.message {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.message.error {
+  color: red;
+}
+
+.message.success {
+  color: green;
+}
+
+/* Existing Styles */
+
+/* OTP Container */
+.otp-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 20px 0;
+  text-align: center; /* Centers the OTP fields */
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+/* OTP Input Fields */
+.otp-input {
+  width: 50px;
+  height: 50px;
+  font-size: 18px;
+  text-align: center;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f8f8f8; /* Light background for OTP fields */
+  outline: none;
+}
+
+.otp-input:focus {
+  background-color: #fdfdfd;
+  border-color: #007bff; /* Blue border to indicate focus */
+}
+
+.otp-input::placeholder {
+  color: #bbb; /* Lighter placeholder text */
+}
+
+.resend-otp {
+  margin-top: 1rem;
+  font-size: 14px;
+  color: #333;
+}
+
+.resend-btn {
+  background: none;
+  border: none;
+  color: #3399ff;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.resend-btn:disabled {
+  color: gray;
+  cursor: not-allowed;
+}
+
+/* Adjustments for Small Screens */
+@media (max-width: 400px) {
+  .login-container {
+    padding: 15px;
+  }
+
+  .input-text,
+  .otp-input {
+    font-size: 14px;
+  }
+
+  .login-btn {
+    font-size: 14px;
+  }
+}

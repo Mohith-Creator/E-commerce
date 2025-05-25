@@ -1,0 +1,46 @@
+.slider-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  margin: auto;
+  overflow: hidden;
+  top: 0; /* Start below the navbar */
+  z-index: 1; /* Ensure it doesn't overlay the navbar */
+}
+
+
+.image-slider {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slider-image {
+  display: none; /* Hide all images initially */
+  width: 100%; /* Set width to 100% of the container */
+  height: auto; /* Maintain aspect ratio */
+}
+
+.slider-image.active {
+  display: block; /* Only show the active image */
+}
+
+.prev-button,
+.next-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.prev-button {
+  left: 10px;
+}
+
+.next-button {
+  right: 10px;
+}
