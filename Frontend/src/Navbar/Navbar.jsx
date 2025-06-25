@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useWishlist } from "../context/WishlistContext";
 import "./Navbar.css";
 
 function Navbar({ onMenClick, onWomenClick }) {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { wishlistCount } = useWishlist();
 
   useEffect(() => {
     const loginStatus = localStorage.getItem("isLoggedIn");
@@ -37,7 +39,18 @@ function Navbar({ onMenClick, onWomenClick }) {
   return (
     <nav className="navbar">
       <div className="nav-left">
-        <h1 className="logo">LOGO</h1>
+        <h1
+          className="logo"
+          onClick={() => {
+            if (window.location.pathname === "/") {
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            } else {
+              navigate("/?scroll=top");
+            }
+          }}
+        >
+          LOGO
+        </h1>
       </div>
 
       <div className="nav-middle">
@@ -47,7 +60,11 @@ function Navbar({ onMenClick, onWomenClick }) {
               href="#"
               onClick={(e) => {
                 e.preventDefault();
-                onMenClick?.();
+                if (window.location.pathname === "/") {
+                  onMenClick?.();
+                } else {
+                  navigate("/?scroll=men");
+                }
               }}
             >
               MEN
@@ -58,7 +75,11 @@ function Navbar({ onMenClick, onWomenClick }) {
               href="#"
               onClick={(e) => {
                 e.preventDefault();
-                onWomenClick?.();
+                if (window.location.pathname === "/") {
+                  onWomenClick?.();
+                } else {
+                  navigate("/?scroll=women");
+                }
               }}
             >
               WOMEN
@@ -121,7 +142,7 @@ function Navbar({ onMenClick, onWomenClick }) {
               </li>
               <hr />
               <li>
-                <Link to="/edit">Edit Profile</Link>
+                <Link to="/profile">Edit Profile</Link>
               </li>
               {isLoggedIn ? (
                 <li
@@ -144,13 +165,32 @@ function Navbar({ onMenClick, onWomenClick }) {
 
         <div
           className="wishlist"
-          onClick={() => {
-            const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
-            navigate("/wishlist");
-          }}
+          onClick={() => navigate("/wishlist")}
+          style={{ position: "relative" }}
         >
           <i className="fa-regular fa-heart"></i>
           <p>Wishlist</p>
+          {wishlistCount > 0 && (
+            <span
+              className="wishlist-badge"
+              style={{
+                position: "absolute",
+                top: 0,
+                right: 0,
+                background: "red",
+                borderRadius: "50%",
+                width: "16px",
+                height: "16px",
+                fontSize: "12px",
+                color: "white",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              {wishlistCount}
+            </span>
+          )}
         </div>
 
         <div className="cart">

@@ -1,0 +1,25 @@
+.wishlist-page {
+    padding: 20px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+  }
+  
+  .wishlist-heading {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 30px;
+  }
+  
+  .empty-wishlist {
+    font-size: 1.2rem;
+    color: #888;
+    margin-top: 50px;
+  }
+  
+  .wishlist-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  

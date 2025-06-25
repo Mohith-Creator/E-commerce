@@ -1,55 +1,76 @@
-import React, { useContext, useEffect } from "react";
-import Lottie from "lottie-react";
-import animationData from "../assets/login.json";
-import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../context/AuthContext";
-import Navbar from "../Navbar/Navbar.jsx";
-import Footer from "../Footer/Footer.jsx";
-import "./Wishlist.css";
+import React, { useEffect, useState } from "react";
+import { useWishlist } from "../context/WishlistContext";
+import Navbar from "../Navbar/Navbar";
+import Footer from "../Footer/Footer";
+import "./wishlist.css";
 
-const Wishlist = () => {
-  const { user } = useContext(AuthContext);
-  const navigate = useNavigate();
+function WishlistPage() {
+  const { wishlistItems } = useWishlist();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   useEffect(() => {
     window.scrollTo(0, 0);
+    const loggedInStatus = localStorage.getItem("isLoggedIn");
+    setIsLoggedIn(loggedInStatus === "true");
   }, []);
-  const handleLoginRedirect = () => {
-    navigate("/login", { state: { from: "/wishlist" } });
-  };
-
-  if (!user) {
-    return (
-      <div className="wishlist-page">
-        <Navbar />
-        <div className="wishlist-container">
-          <h2 className="wishlist-heading">PLEASE LOG IN</h2>
-          <p className="wishlist-subtext">
-            Login to view items in your wishlist.
-          </p>
-          <div className="wishlist-animation">
-            <Lottie animationData={animationData} loop={true} />
-          </div>
-          <button
-            className="wishlist-login-button"
-            onClick={handleLoginRedirect}
-          >
-            Login
-          </button>
-        </div>
-        <Footer />
-      </div>
-    );
-  }
 
   return (
-    <div className="wishlist-page">
+    <>
       <Navbar />
-      <div className="wishlist-loggedin">
-        <h2>Your Wishlist</h2>
+      <div className="wishlist-container">
+        <h2>My Wishlist</h2>
+
+        {!isLoggedIn ? (
+          <p className="empty-text">Please login to view your wishlist.</p>
+        ) : wishlistItems.length === 0 ? (
+          <p className="empty-text">No items in wishlist.</p>
+        ) : (
+          <div className="wishlist-grid">
+            {wishlistItems.map((item, index) => (
+              <div key={index} className="wishlist-product">
+                <img
+                  src={item.imgList[0]}
+                  alt={item.title}
+                  className="product-image"
+                />
+                <div className="product-content">
+                  <div className="product-title">{item.title}</div>
+                  <div className="product-description">{item.description}</div>
+                  <div className="product-price">
+                    {item.originalPrice && (
+                      <span className="original-price">
+                        ${item.originalPrice}
+                      </span>
+                    )}
+                    <span className="discounted-price">
+                      ${item.discountedPrice || item.originalPrice}
+                    </span>
+                  </div>
+                  <div className="cardbuttons">
+                    <button
+                      className="addtocart"
+                      onClick={() => console.log("Add to Cart:", item.title)}
+                    >
+                      Add to Cart
+                    </button>
+                    <button
+                      className="wishlists"
+                      onClick={() =>
+                        console.log("Remove from Wishlist:", item.title)
+                      }
+                    >
+                      Remove
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
       <Footer />
-    </div>
+    </>
   );
-};
+}
 
-export default Wishlist;
+export default WishlistPage;

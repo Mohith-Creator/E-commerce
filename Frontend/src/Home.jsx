@@ -17,6 +17,7 @@ import Modern from "./Headings/Modern/Modern.jsx";
 import ProductPage from "./ProductPage/ProductPage.jsx";
 import Footer from "./Footer/Footer.jsx";
 import WishlistPage from "./Wishlist/Wishlist.jsx";
+import ScrollHandler from "./ScrollHandler/ScrollHandler.jsx";
 
 function Layout({ children, onMenClick, onWomenClick }) {
   const location = useLocation();
@@ -54,6 +55,10 @@ function Home() {
               onMenClick={handleScrollToMen}
               onWomenClick={scrollToGirlsTop}
             >
+              <ScrollHandler
+                onMenClick={handleScrollToMen}
+                onWomenClick={scrollToGirlsTop}
+              />
               <ImageSlider />
               <SeasonalHeading toggleRef={menToggleRef} />
               <TopHeading />

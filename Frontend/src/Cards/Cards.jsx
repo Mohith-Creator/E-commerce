@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import "./card.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
-import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useWishlist } from "../context/WishlistContext";
 
 function Card({
   imgList,
@@ -11,11 +13,11 @@ function Card({
   originalPrice,
   discountedPrice,
   offer,
-  productId, // Add this to uniquely identify the product
 }) {
   const [currentImage, setCurrentImage] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
-  const navigate = useNavigate();
+  const [isWishlisted, setIsWishlisted] = useState(false); // ✅ New state
+  const { addToWishlist } = useWishlist();
 
   useEffect(() => {
     let interval;
@@ -28,15 +30,23 @@ function Card({
   }, [isHovered, imgList.length]);
 
   const handleWishlistClick = (e) => {
-    e.preventDefault(); 
-    e.stopPropagation();
-    const token = localStorage.getItem("token");
-    if (!token) {
-      navigate("/login");
-    } else {
-      console.log("Product added to wishlist:", productId);
-    }
-  };
+  e.preventDefault();
+  e.stopPropagation();
+
+  if (!isWishlisted) {
+    addToWishlist({
+      imgList,
+      title,
+      description,
+      originalPrice,
+      discountedPrice,
+      offer,
+    });
+    setIsWishlisted(true);
+    toast.success("Added to wishlist!");
+  }
+};
+
 
   return (
     <div
@@ -64,12 +74,20 @@ function Card({
           )}
         </div>
         <div className="cardbuttons">
-          <button className="wishlists" onClick={handleWishlistClick}>
+          <button
+            className="wishlists"
+            onClick={handleWishlistClick}
+            disabled={isWishlisted}
+            style={{
+              opacity: isWishlisted ? 0.6 : 1,
+              cursor: isWishlisted ? "not-allowed" : "pointer",
+            }}
+          >
             <FontAwesomeIcon
               icon={faHeartRegular}
               style={{ marginRight: "8px" }}
             />
-            Wishlist
+            {isWishlisted ? "Wishlisted" : "Wishlist"}
           </button>
         </div>
       </div>
